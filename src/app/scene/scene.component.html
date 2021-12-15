@@ -1,62 +1,87 @@
-<a-scene
-  class="scene"
-  cursor="rayOrigin: mouse"
-  vr-mode-ui="enabled: false"
->
-  <a-assets>
-    <img id="skybox-image" src="/assets/img/skybox.jpg" alt="Sky" />
-  </a-assets>
 
-  <!--
-  Camera And Lights
-  -->
-  <a-camera
-    id="camera"
-    #camera
-    position="0 160 400"
-    wasd-controls="
-      acceleration: 2000;
-      fly: true;
-    "
-  ></a-camera>
+<!-- 5 DE EJE Z / 10 EN EL EJE X -->
+     <a-scene environment>
+      <a-assets>
+       
+        <img src="https://img.gs/bbdkhfbzkk/stretch/https://i.imgur.com/25P1geh.png" id="grid" crossorigin="anonymous">
+        <img src="https://img.gs/bbdkhfbzkk/2048x1024,stretch/http://i.imgur.com/WMNH2OF.jpg" id="chrome" crossorigin="anonymous">
+        <a-asset-item id="exoFont" src="https://cdn.glitch.com/c719c986-c0c5-48b8-967c-3cd8b8aa17f3%2Fexo2Black.typeface.json?1490305922150"></a-asset-item>
+        <a-asset-item id="exoItalicFont" src="https://cdn.glitch.com/c719c986-c0c5-48b8-967c-3cd8b8aa17f3%2Fexo2BlackItalic.typeface.json?1490305922725"></a-asset-item>
+      </a-assets>
+     
 
-  <a-light
-    id="main-light"
-    type="ambient"
-    color="#ffffff"
-    intensity="1"
-  ></a-light>
+      <!-- <a-entity position="5 8 -28" rotation="5 0 0">
+        <a-entity position="-0.5 0.5 -0.5" scale="0.6 1.2 1" text-geometry="value: Awesome Fest; font: #exoFont; bevelEnabled: false; bevelSize: 0.1; bevelThickness: 0.1; curveSegments: 1; size: 1.5; height: 0.5;" material="color:white; metalness:0; roughness: 0.05; sphericalEnvMap: #chrome;"></a-entity>
+        <a-entity position="1 0 0.3" text-geometry="value: 2021; font: #exoItalicFont; style: italic; size: 0.8; weight: bold; height: 0;"
+                  material="shader: flat; color: white"></a-entity>
+        <a-entity position="1 0 0.3" text-geometry="value: 2.0; font: #exoItalicFont; style: italic; size: 0.8; weight: bold; height: 0; bevelEnabled: true; bevelSize: 0.04; bevelThickness: 0.04; curveSegments: 1"
+                  material="shader: flat; color: white; transparent: true; opacity: 0.4"></a-entity>
+      </a-entity>  -->
 
-  <a-light
-    id="sun-light"
-    position="0 0 0"
-    type="point"
-    color="#ffffff"
-    intensity="0.75"
-    light="
-      castShadow: true;
-    "
-  ></a-light>
+      <ng-container select="building" *ngFor="let el of buildings; let i = index;">
 
-  <!-- World Setup -->
-  <a-sky
-    id="sky"
-    position="0 0 0"
-    radius="1000"
-    color="#ffffff"
-    src="#skybox-image"
-  ></a-sky>
+        <a-text [id]="'title-'+ i" value=""></a-text>
 
-  <a-circle
-    id="ground"
-    position="0 0 0"
-    rotation="-90 0 0"
-    radius="1000"
-    color="#cccccc"
-  ></a-circle>
+        <a-entity
+        [id]="'circleBuilding-'+ i"
+        position="0 0 0"
+        rotation="0 0 0"
+        geometry="primitive: circle;"
+        [material]="src: https://pbs.twimg.com/profile_images/1124306467518021632/lhRe7w22_400x400.png;"
+        size-change
+        scale="0.5 0.5 0.5"
+      ></a-entity>
 
-  <a-entity class="objects">
-    <a-box id="box" width="20" height="20" depth="20" color="#ff0000"></a-box>
-  </a-entity>
 
-</a-scene>
+<!-- SIDE INFO -->
+    <!-- TIPO DE TRABAJO -->
+  <a-entity position="1 2.8 -7" rotation="0 45 0">
+    <a-entity position="0.5 0.5 0.3" text-geometry="value: Tipo; font: #exoItalicFont; style: italic; size: 0.3; weight: bold; height: 0;"
+    material="shader: flat; color: white"></a-entity>
+    <a-entity position="0.5 0 0.3" scale="0.5 0.5 0.5" text-geometry="value: Remoto; font: #exoFont; bevelEnabled: false; bevelSize: 0.04; bevelThickness: 0.04; curveSegments: 1; size: 0.9; height: 0.2;" material="color:white;"></a-entity>
+  </a-entity> 
+
+  
+<!-- SKILLS LEVEL -->
+<a-entity position="1 1.8 -7" rotation="0 45 0">
+  <a-entity position="0.5 0.5 0.3" text-geometry="value: Nivel; font: #exoItalicFont; style: italic; size: 0.3; weight: bold; height: 0;"
+  material="shader: flat; color: white"></a-entity>
+  <a-entity position="0.5 0 0.3" scale="0.5 0.5 0.5" text-geometry="value: Senior; font: #exoFont; bevelEnabled: false; bevelSize: 0.04; bevelThickness: 0.04; curveSegments: 1; size: 0.9; height: 0.2;" material="color:white;"></a-entity>
+</a-entity> 
+
+
+
+<!-- SKILLS LEVEL -->
+<a-entity position="1 0.8 -7" rotation="0 45 0">
+  <a-entity position="0.5 0.5 0.3" text-geometry="value: Salario; font: #exoItalicFont; style: italic; size: 0.3; weight: bold; height: 0;"
+  material="shader: flat; color: white"></a-entity>
+  <a-entity position="0.5 0 0.3" scale="0.5 0.5 0.5" text-geometry="value: 3.000.000; font: #exoFont; bevelEnabled: false; bevelSize: 0.04; bevelThickness: 0.04; curveSegments: 1; size: 0.9; height: 0.2;" material="color:white;"></a-entity>
+</a-entity> 
+
+
+      <a-entity
+        [id]="'boxGeometryBuilding-'+ i"
+        position="0 0 0"
+        rotation="0 0 0"
+        geometry="primitive: box; height: 12; width: 4; depth: 4"
+        material="color: #1597E5;"
+        size-change
+        scale="0.5 0.5 0.5"
+      >
+    </a-entity>
+      </ng-container>
+
+
+        
+      
+      <!-- <a-entity id="menu" menu position="0 1.5 -0.5" rotation="-45 0 0" event-manager>
+        <a-entity slider position="0 0.10 0"></a-entity>
+        <a-entity id="sphereButton" button="label: sphere" position="-0.15 0 0"></a-entity>
+        <a-entity id="boxButton" button="label: box" position="0 0 0"></a-entity>
+        <a-entity id="torusButton"button="label: torus" position="0.15 0 0"></a-entity>
+        <a-entity id="darkModeButton" button="label: Dark Mode; width: 0.20; toggable: true" position="0 -0.10 0"></a-entity>
+      </a-entity>
+      <a-entity hand-tracking-controls="hand: left"></a-entity>
+      <a-entity hand-tracking-controls="hand: right"></a-entity> -->
+    </a-scene>
+
